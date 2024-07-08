@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>clicker</title>
+	<style>
+		.jogo{
+			position: fixed;
+			bottom: 20px;
+			left: calc(50% - 100px);
+			width: 200px;
+		}
+		#verde{
+			background-color: green;
+			height: 20px;
+			width: 100px;
+		}
+		#vermelho{
+			background-color: red;
+			height: 20px;
+			width: 100px;
+			position: absolute;
+			right: 0px;
+			top: 0px;
+		}
+		.centro{
+			z-index: 1;
+			height: 30px;
+			width: 2px;
+			border: 1px solid black;
+			position: absolute;
+			right: calc(50% - 1px);
+			top: calc(50% - 15px);
+			background-color: white;
+			border-radius: 2px;
+		}
+		body, html{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#vitoria{
+			font-size: 50px;
+		}
+		#direita{
+			position: fixed;
+			height: 100%;
+			width: 50%;
+			right: 0px;
+			user-select: none;
+		}
+		#esquerda{
+			position: fixed;
+			height: 100%;
+			width: 50%;
+			left: 0px;
+			user-select: none;
+		}
+		#vitoria{
+			font-family: arial;
+		}
+	</style>
+</head>
+<body>
+	<div id='direita'></div>
+	<div id='esquerda'></div>
+<div id='vitoria'></div>
+<div class='jogo'>
+<div class='centro'></div>
+<div id='verde'></div>
+<div id='vermelho'></div>
+</div>
+<script>
+	const direita = document.getElementById('direita')
+		const esquerda = document.getElementById('esquerda')
+const verde = document.getElementById('verde')
+const vermelho = document.getElementById('vermelho')
+let verdeW = 100
+let vermelhoW = 100
+let iskeypressed = false
+
+document.addEventListener('keypress', click)
+
+document.addEventListener('keyup', function(){
+iskeypressed = false
+})
+
+direita.addEventListener('click', function(){
+	teste(-10, 10)
+})
+esquerda.addEventListener('click', function(){
+	teste(10, -10)
+})
+
+function click(event){
+	if (!iskeypressed) {
+    iskeypressed = true;
+	if(event.keyCode === 32){
+		teste(10, -10)
+	}
+	else if(event.keyCode === 13){
+		teste(-10, 10)
+	}
+}
+}
+
+function teste(teste, teste1){
+	if(verdeW !== 200 && vermelhoW !== 200){
+	    verdeW += teste
+		vermelhoW += teste1
+		verde.style.width = verdeW + 'px'
+		vermelho.style.width = vermelhoW + 'px'
+	}
+		else{
+	if(verdeW == 200){
+		vitoria.innerHTML = 'verde ganhou'
+		vitoria.style.color = 'green'
+	}
+	else{
+		vitoria.innerHTML = 'vermelho ganhou'
+		vitoria.style.color = 'red'
+	}
+}
+	}
+</script>
+</body>
+</html>
